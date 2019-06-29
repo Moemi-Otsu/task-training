@@ -6,14 +6,18 @@ class TasksController < ApplicationController
   end
 
   def new
-    @task = Task.new
+    if params[:back]
+      @task = Task.new(task_params)
+    else
+      @task = Task.new
+    end
   end
 
   def create
     @task = Task.new(task_params)
     if @task.save
       Task.create(task_params)
-      redirect_to new_task_path
+      redirect_to tasks_path, notice: 'タスクを作成しました'
     else
       render 'new'
     end
@@ -36,6 +40,11 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
     redirect_to tasks_path, notice: 'タスクを削除しました'
+  end
+
+  def confirm
+    @task = Task.new(task_params)
+    render :new if @task.invalid?
   end
 
   private
