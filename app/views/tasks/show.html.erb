@@ -1,3 +1,7 @@
 <h1>ブログ詳細画面</h1>
 <p>タイトル: <%= @task.title %></p>
 <p>タスク内容: <%= @task.content %></p>
+<div class="btns">
+  <p><%= link_to '新規作成', new_task_path %></p>
+  <p><%= link_to '一覧へ戻る', tasks_path %></p>
+</div>
