@@ -26,5 +26,7 @@ module TaskTraining
         request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
+    # デフォルトの言語を日本語に設定する
+    config.i18n.default_locale = :ja
   end
 end

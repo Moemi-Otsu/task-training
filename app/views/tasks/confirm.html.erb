@@ -4,13 +4,13 @@
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
 
-  <p>タイトル:<%= @task.title %></p>
-  <p>本文:<%= @task.content %></p>
-  <%= form.submit  "登録する" %>
+  <p><%= t('view.title') %>：<%= @task.title %></p>
+  <p><%= t('view.content') %>：<%= @task.content %></p>
+  <%= form.submit  t('view.submit') %>
 <% end %>
 
 <%= form_with(model: @task, url: new_task_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
-  <%= form.submit "戻る", name: 'back' %>
+  <%= form.submit t('view.back'), name: 'back' %>
 <% end %>
