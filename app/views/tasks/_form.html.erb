@@ -12,11 +12,11 @@
 
   <div class="task_title">
     <%= form.label :'タイトル' %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, id: 'title' %>
   </div>
   <div class="task_title">
     <%= form.label :'タスク内容' %>
-    <%= form.text_field :content %>
+    <%= form.text_field :content, id: 'content' %>
   </div>
   <div class="submit">
     <%= form.submit '投稿する' %>
