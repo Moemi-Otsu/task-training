@@ -13,7 +13,7 @@ module TaskTraining
     # scaffoldで余計なファイルが生成されないよう記述
     config.generators do |g|
       g.assets false
-      g.helper false
+      # g.helper false
       g.jbuilder false
     end
   end
