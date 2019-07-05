@@ -4,9 +4,9 @@
 <table>
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= task.title %></td>
+    <td class="task_title"><%= task.title %></td>
     <td><%= task.content %></td>
-    <td><%= link_to t('view.detail'), task_path(task.id) %></td>
+    <td><%= link_to t('view.detail'), task_path(task.id), class: 'submit' %></td>
     <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
     <td><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>
   </tr>

@@ -1,19 +1,27 @@
 require 'rails_helper'
 
 RSpec.feature "タスク管理機能", type: :feature do
+  
+  background do
+    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+    # Task.create!(title: 'タイトルa', content: 'コンテンツa')
+    # Task.create!(title: 'タイトルb', content: 'コンテンツb')
+  end
 
   scenario "タスク一覧のテスト" do
-    Task.create!(title: 'タイトルc', content: 'コンテンツc')
-    Task.create!(title: 'タイトルd', content: 'コンテンツd')
+    # background do の内容が先に実行される
   
     visit tasks_path
     # visit "/tasks"
     # visit root_path
 
+    # テスト処理を止めてviewページを表示ことができる
     # save_and_open_page
   
-    expect(page).to have_content 'コンテンツc'
-    expect(page).to have_content 'コンテンツd'
+    expect(page).to have_content 'コンテンツa'
+    expect(page).to have_content 'コンテンツb'
   end
 
   scenario "新規投稿テスト" do
@@ -33,9 +41,21 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "一覧ページから詳細ページへの遷移" do
-    Task.create!(title: 'タイトルa', content: 'コンテンツa')
+    # background do の内容が先に実行される
     visit tasks_path
-    #save_and_open_page
-    click_link '詳細'
+    # save_and_open_page
+    # click_link '詳細'
+    all('tr')[0].click_link('詳細')
   end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    # background do の内容が先に実行される
+    visit tasks_path
+    # save_and_open_page
+    # ページの要素
+    task = all('.task_title')
+    expect(task[0]).to have_content('タイトルbタイトルb')
+    expect(task[1]).to have_content('タイトルaタイトルa')
+  end
+
 end
