@@ -43,11 +43,19 @@ RSpec.feature "タスク管理機能", type: :feature do
   scenario "一覧ページから詳細ページへの遷移" do
     # background do の内容が先に実行される
     visit tasks_path
-    #save_and_open_page
-    click_link '詳細'
+    # save_and_open_page
+    # click_link '詳細'
+    all('tr')[0].click_link('詳細')
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    # background do の内容が先に実行される
+    visit tasks_path
+    # save_and_open_page
+    # ページの要素
+    task = all('.task_title')
+    expect(task[0]).to have_content('タイトルbタイトルb')
+    expect(task[1]).to have_content('タイトルaタイトルa')
   end
 
 end
