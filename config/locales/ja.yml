@@ -208,6 +208,7 @@ ja:
   view:
     title: タイトル
     content: タスク内容
+    deadline: 終了期日
     submit: 投稿する
     new: 新規作成
     back: 一覧へ戻る
