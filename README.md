@@ -1,5 +1,13 @@
 # README
 
+## Deploy
+GitHubのmasterにコードがマージ（プルリクエストがマージ）されると、
+自動的にherokuへmasterブランチのコードがデプロイされます。
+
+## 開発バージョン
+Ruby: ruby 2.6.3
+Rails: Rails 5.2.3
+
 ##  Table Users
 * id　:integer
 * user_name　:string
