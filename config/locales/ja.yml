@@ -222,3 +222,5 @@ ja:
     title_h1_show: ブログ詳細画面
     title_h1_confirm: 以下の内容で送信する
     title_h1_edit: 編集する
+    sort_deadline: 終了期限順に表示
+    sort_created_at: 作成順に表示
