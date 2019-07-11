@@ -1,6 +1,14 @@
 <h1><%= t('view.title_h1_index') %></h1>
 <p><%= notice %></p>
 
+<%= form_with(model: @task, url: new_task_path, local: true, method: 'get') do |form| %>
+  <%= form.label :'title_search', "タイトル検索" %>
+  <%= form.text_field :title, class: 'form_control' %>
+  <%= form.label :'status_search', "ステータス検索" %>
+  <%= form.select :status, [["未着手", "waiting"], ["着手中", "working"], ["完了", "done"]],  :prompt => "選択してください" %>
+  <%= form.submit t('view.sort_status_btn'), name: 'back' %>
+<% end %>
+
 <div class="btn_sort">
   <p><%= link_to t('view.sort_deadline'), tasks_path(sort: true) %></p>
   <p><%= link_to t('view.sort_created_at'), tasks_path %></p>
@@ -11,12 +19,14 @@
     <td><%= t('view.title') %></td>
     <td><%= t('view.content') %></td>
     <td><%= t('view.deadline') %></td>
+    <td><%= t('view.status') %></td>
   </tr>
 <% @tasks.each do |task| %>
   <tr>
     <td class="task_title"><%= task.title %></td>
     <td><%= task.content %></td>
     <td class="sort_test_capybara"><%= task.deadline %></td>
+    <td><%= task.status %></td>
     <td><%= link_to t('view.detail'), task_path(task.id), class: 'submit' %></td>
     <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
     <td><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>

@@ -209,9 +209,11 @@ ja:
     title: タイトル
     content: タスク内容
     deadline: 終了期日
+    status: ステータス
     submit: 投稿する
     new: 新規作成
-    back: 一覧へ戻る
+    back_index: 一覧へ戻る
+    back: 戻る
     detail: 詳細
     edit: 編集
     delete: 削除
@@ -224,3 +226,4 @@ ja:
     title_h1_edit: 編集する
     sort_deadline: 終了期限順に表示
     sort_created_at: 作成順に表示
+    sort_status_btn: 絞り込み検索
