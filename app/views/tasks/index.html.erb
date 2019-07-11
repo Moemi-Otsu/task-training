@@ -6,7 +6,7 @@
   <%= form.text_field :title, class: 'form_control' %>
   <%= form.label :'status_search', "ステータス検索" %>
   <%= form.select :status, [["未着手", "waiting"], ["着手中", "working"], ["完了", "done"]],  :prompt => "選択してください" %>
-  <%= form.submit t('view.sort_status_btn'), name: 'back' %>
+  <%= form.submit t('view.sort_status_btn') %>
 <% end %>
 
 <div class="btn_sort">
