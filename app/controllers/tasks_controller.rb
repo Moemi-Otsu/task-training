@@ -2,8 +2,30 @@ class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:sort]
+    # 終了期限順にソート
+    if params[:sort] == "true"
       @tasks = Task.all.order("deadline DESC")
+    # 絞り込み検索 - 条件を何も入力しなかったとき
+    elsif params[:title_search] == "" && params[:status_search] == "" && params[:btn_search]
+      redirect_to tasks_path, notice: '絞り込み条件を入力してください。'
+    # 絞り込み検索 - タイトルでの検索
+    elsif params[:title_search].present?
+      # LIKEによるタイトルのあいまい検索
+      @tasks = Task.where("title LIKE?", "%#{params[:title_search]}%")
+      # タイトルが検索ヒットしなければアラートをだす
+      if @tasks.count == 0
+        redirect_to tasks_path, notice: '絞り込み条件にマッチするタスクはありません。'
+      end
+    #  絞り込み検索 - ステータスでの検索
+    elsif params[:status_search].present?
+      @tasks = Task.where(status: params[:status_search])
+      if @tasks.count == 0
+        redirect_to tasks_path, notice: '絞り込み条件にマッチするタスクはありません。'
+      end
+    #  絞り込み検索 - タイトル & ステータス 両方の値が存在した場合の検索
+    elsif params[:title_search].present? && params[:status_search].present?
+      @tasks = Task.where("title LIKE?", "%#{params[:title_search]}%", status: params[:status_search])
+    # 通常のindex表示
     else
       @tasks = Task.all.order("created_at DESC")
     end
