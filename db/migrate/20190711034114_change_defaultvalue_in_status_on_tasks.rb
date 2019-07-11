@@ -1,9 +1,5 @@
 class ChangeDefaultvalueInStatusOnTasks < ActiveRecord::Migration[5.2]
-  def up
-    change_column_default(tasks, status, '')
-  end
-
-  def down
-    change_column_default(tasks, status, '未着手')
+  def change
+    change_column :tasks, :status, :string, default: '', null: false
   end
 end
