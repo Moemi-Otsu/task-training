@@ -18,6 +18,10 @@
     <%= form.label :'content', t('view.content') %>
     <%= form.text_field :content, id: 'content' %>
   </div>
+  <div class="task_title">
+    <%= form.label :'deadline', t('view.deadline') %>
+    <%= form.date_field :deadline, id: 'deadline' %>
+  </div>
   <div class="submit">
     <%= form.submit t('view.submit') %>
   </div>

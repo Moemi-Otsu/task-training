@@ -6,13 +6,13 @@ RSpec.feature "タスク管理機能", type: :feature do
     # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
     FactoryBot.create(:task)
     FactoryBot.create(:second_task)
+    FactoryBot.create(:third_task)
     # Task.create!(title: 'タイトルa', content: 'コンテンツa')
     # Task.create!(title: 'タイトルb', content: 'コンテンツb')
   end
 
   scenario "タスク一覧のテスト" do
     # background do の内容が先に実行される
-  
     visit tasks_path
     # visit "/tasks"
     # visit root_path
@@ -31,7 +31,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     # 「タスク名」というラベル名の入力欄と、「タスク詳細」というラベル名の入力欄に
     # タスクのタイトルと内容をそれぞれfill_in（入力）する
     fill_in 'title', with: 'これはタイトルのテスト'
-    fill_in 'content', with: 'これはコンテンツ内容テスト' 
+    fill_in 'content', with: 'これはコンテンツ内容テスト'
+    fill_in 'deadline', with: '2019-07-27'
 
     # 4.「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
     click_on '投稿する'
@@ -45,7 +46,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     # save_and_open_page
     # click_link '詳細'
-    all('tr')[0].click_link('詳細')
+    all('tr')[1].click_link('詳細')
   end
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
@@ -54,8 +55,20 @@ RSpec.feature "タスク管理機能", type: :feature do
     # save_and_open_page
     # ページの要素
     task = all('.task_title')
-    expect(task[0]).to have_content('タイトルbタイトルb')
-    expect(task[1]).to have_content('タイトルaタイトルa')
+    expect(task[0]).to have_content('タイトルcタイトルc')
+    expect(task[1]).to have_content('タイトルbタイトルb')
+    expect(task[2]).to have_content('タイトルaタイトルa')
+  end
+
+  scenario "タスクが終了期限の降順に並んでいるかのテスト" do
+    # background do の内容が先に実行される
+    visit tasks_path
+    click_on '終了期限順に表示'
+    # save_and_open_page
+    task = all('.sort_test_capybara')
+    expect(task[0]).to have_content('2019-08-08'.to_date)
+    expect(task[1]).to have_content('2019-07-30'.to_date)
+    expect(task[2]).to have_content('2019-07-27'.to_date)
   end
 
 end

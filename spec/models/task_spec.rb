@@ -14,10 +14,12 @@ describe Task do
   it "is invalid with a duplicate title" do
     Task.create(
       title: 'タイトルA',
-      content: 'コンテンツAコンテンツAコンテンツA')
+      content: 'コンテンツAコンテンツAコンテンツA',
+      deadline: '2019-07-18')
     task =  Task.new(
       title: 'タイトルA',
-      content: 'コンテンツAコンテンツAコンテンツA')
+      content: 'コンテンツAコンテンツAコンテンツA',
+      deadline: '2019-07-27')
     task.valid?
     expect(task.errors[:title]).to include("はすでに存在します")
   end

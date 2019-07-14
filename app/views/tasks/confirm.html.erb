@@ -3,14 +3,17 @@
 <%= form_with(model: @task, url: tasks_path, local: true) do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :deadline %>
 
   <p><%= t('view.title') %>：<%= @task.title %></p>
   <p><%= t('view.content') %>：<%= @task.content %></p>
+  <p><%= t('view.deadline') %>：<%= @task.deadline %></p>
   <%= form.submit  t('view.submit') %>
 <% end %>
 
 <%= form_with(model: @task, url: new_task_path, local: true, method: 'get') do |form| %>
   <%= form.hidden_field :title %>
   <%= form.hidden_field :content %>
+  <%= form.hidden_field :deadline %>
   <%= form.submit t('view.back'), name: 'back' %>
 <% end %>
