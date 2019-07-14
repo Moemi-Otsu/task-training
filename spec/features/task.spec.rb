@@ -97,4 +97,17 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(task[1]).to have_content('タイトルa')
   end
 
+  scenario "優先順位priorityの投稿テスト" do
+    visit new_task_path
+    fill_in 'title', with: 'これはタイトルのテスト'
+    fill_in 'content', with: 'これはコンテンツ内容テスト'
+    fill_in 'deadline', with: '2019-07-27'
+    select '完了', from: 'task[status]'
+    select '高', from: 'task[priority]'
+
+    click_on '投稿する'
+    # save_and_open_page
+    expect(page).to have_content '高'
+  end
+
 end
