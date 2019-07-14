@@ -5,11 +5,13 @@
   <%= form.hidden_field :content %>
   <%= form.hidden_field :deadline %>
   <%= form.hidden_field :status %>
+  <%= form.hidden_field :priority %>
 
   <p><%= t('view.title') %>：<%= @task.title %></p>
   <p><%= t('view.content') %>：<%= @task.content %></p>
   <p><%= t('view.deadline') %>：<%= @task.deadline %></p>
   <p><%= t('view.status') %>：<%= @task.status %></p>
+  <p><%= t('view.priority') %>：<%= @task.priority %></p>
   <%= form.submit  t('view.submit') %>
 <% end %>
 
@@ -18,5 +20,6 @@
   <%= form.hidden_field :content %>
   <%= form.hidden_field :deadline %>
   <%= form.hidden_field :status %>
+  <%= form.hidden_field :priority %>
   <%= form.submit t('view.back'), name: 'back' %>
 <% end %>

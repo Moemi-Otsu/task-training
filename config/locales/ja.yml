@@ -210,6 +210,7 @@ ja:
     content: タスク内容
     deadline: 終了期日
     status: ステータス
+    priority: 優先順位
     submit: 投稿する
     new: 新規作成
     back_index: 一覧へ戻る
@@ -227,3 +228,6 @@ ja:
     sort_deadline: 終了期限順に表示
     sort_created_at: 作成順に表示
     sort_status_btn: 絞り込み検索
+    sort_title_search: タイトル検索
+    sort_status_search: ステータス検索
+    sort_prompt: 選択してください
