@@ -5,18 +5,21 @@ FactoryBot.define do
     title { 'タイトルaタイトルa' }
     content { 'コンテンツaコンテンツaコンテンツa' }
     deadline { '2019-07-27' }
+    status { '未着手' }
   end
 
   factory :second_task, class: Task do
     title { 'タイトルbタイトルb' }
     content { 'コンテンツbコンテンツbコンテンツb' }
     deadline { '2019-07-30' }
+    status { '着手' }
   end
 
   factory :third_task, class: Task do
     title { 'タイトルcタイトルc' }
     content { 'コンテンツcコンテンツcコンテンツc' }
     deadline { '2019-08-08' }
+    status { '完了' }
   end
 
 end

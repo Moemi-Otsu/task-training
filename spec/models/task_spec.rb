@@ -15,11 +15,13 @@ describe Task do
     Task.create(
       title: 'タイトルA',
       content: 'コンテンツAコンテンツAコンテンツA',
-      deadline: '2019-07-18')
+      deadline: '2019-07-18',
+      status: '未着手')
     task =  Task.new(
       title: 'タイトルA',
       content: 'コンテンツAコンテンツAコンテンツA',
-      deadline: '2019-07-27')
+      deadline: '2019-07-27',
+      status: '着手')
     task.valid?
     expect(task.errors[:title]).to include("はすでに存在します")
   end
@@ -29,6 +31,16 @@ describe Task do
     task = Task.new(title: 'タイトル' * 101)
     task.valid?
     expect(task.errors[:title]).to include("は101文字以内で入力してください")
+  end
+
+  # status_searchでステータスの結果が反映されていること
+  it "is status result is reflected in status_search" do
+    expect(Task.status_search_param("未着手")).to eq Task.where(status: "未着手")
+  end
+
+  # title_searchでの曖昧検索が動作していること
+  it "is ambiguous search in title_search is working" do
+    expect(Task.title_search_ambiguous("タイトルa")).to eq Task.where("title LIKE?", "%タイトルa%")
   end
 
 end
