@@ -5,7 +5,9 @@
   <%= form.label :'title_search', t('view.sort_title_search') %>
   <%= form.text_field :title_search, class: 'form_control' %>
   <%= form.label :'status_search', t('view.sort_status_search') %>
-  <%= form.select :status_search, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]],  :prompt => t('view.sort_prompt') %>
+  <%= form.select :status_search, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], :prompt => t('view.sort_prompt') %>
+  <%= form.label :'priority_search', t('view.priority') %>
+  <%= form.select :priority_search, [["低", "低"], ["中", "中"], ["高", "高"]], :prompt => t('view.sort_prompt') %>
   <%= form.submit t('view.sort_status_btn'), name: 'btn_search' %>
 <% end %>
 

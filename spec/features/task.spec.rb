@@ -87,6 +87,26 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(task[1]).to have_content('未着手')
   end
 
+  scenario "絞り込み検索priorityテスト" do
+    visit tasks_path
+    select '低', from: 'priority_search'
+    click_on '絞り込み検索'
+    task = all('tr')
+    expect(task[1]).to have_content('低')
+  end
+
+  scenario "絞り込み検索titleとstatusとpriority掛け合わせテスト" do
+    visit tasks_path
+    fill_in 'title_search', with: 'タイトルa'
+    select '未着手', from: 'status_search'
+    select '高', from: 'priority_search'
+    click_on '絞り込み検索'
+    task = all('tr')
+    expect(task[1]).to have_content('未着手')
+    expect(task[1]).to have_content('タイトルa')
+    expect(task[1]).to have_content('高')
+  end
+
   scenario "絞り込み検索titleとstatus掛け合わせテスト" do
     visit tasks_path
     fill_in 'title_search', with: 'タイトルa'
@@ -97,7 +117,27 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(task[1]).to have_content('タイトルa')
   end
 
-  scenario "優先順位priorityの投稿テスト" do
+  scenario "絞り込み検索titleとpriority掛け合わせテスト" do
+    visit tasks_path
+    fill_in 'title_search', with: 'タイトルa'
+    select '高', from: 'priority_search'
+    click_on '絞り込み検索'
+    task = all('tr')
+    expect(task[1]).to have_content('高')
+    expect(task[1]).to have_content('タイトルa')
+  end
+
+  scenario "絞り込み検索statusとpriority掛け合わせテスト" do
+    visit tasks_path
+    select '未着手', from: 'status_search'
+    select '高', from: 'priority_search'
+    click_on '絞り込み検索'
+    task = all('tr')
+    expect(task[1]).to have_content('高')
+    expect(task[1]).to have_content('未着手')
+  end
+
+  scenario "優先順位priorityの新規投稿テスト" do
     visit new_task_path
     fill_in 'title', with: 'これはタイトルのテスト'
     fill_in 'content', with: 'これはコンテンツ内容テスト'

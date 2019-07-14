@@ -6,5 +6,6 @@ class Task < ApplicationRecord
 
   # クラスメソッドと同じことになる
   scope :status_search_param, -> (status_search){where(status: status_search)}
+  scope :priority_search_param, -> (priority_search){where(priority: priority_search)}
   scope :title_search_ambiguous, -> (title_search){where("title LIKE?", "%#{title_search}%")}
 end
