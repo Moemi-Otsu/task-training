@@ -71,4 +71,30 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(task[2]).to have_content('2019-07-27'.to_date)
   end
 
+  scenario "絞り込み検索titleテスト" do
+    visit tasks_path
+    fill_in 'title_search', with: 'タイトルa'
+    click_on '絞り込み検索'
+    task = all('.task_title')
+    expect(task[0]).to have_content('タイトルaタイトルa')
+  end
+
+  scenario "絞り込み検索statusテスト" do
+    visit tasks_path
+    select '未着手', from: 'status_search'
+    click_on '絞り込み検索'
+    task = all('tr')
+    expect(task[1]).to have_content('未着手')
+  end
+
+  scenario "絞り込み検索titleとstatus掛け合わせテスト" do
+    visit tasks_path
+    fill_in 'title_search', with: 'タイトルa'
+    select '未着手', from: 'status_search'
+    click_on '絞り込み検索'
+    task = all('tr')
+    expect(task[1]).to have_content('未着手')
+    expect(task[1]).to have_content('タイトルa')
+  end
+
 end
