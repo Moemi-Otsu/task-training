@@ -38,6 +38,8 @@
 <% end %>
 </table>
 
+<%= paginate @tasks %>
+
 <div class="btns">
   <p><%= link_to t('view.new'), new_task_path %></p>
 </div>
