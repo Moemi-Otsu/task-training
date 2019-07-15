@@ -38,6 +38,11 @@ describe Task do
     expect(Task.status_search_param("未着手")).to eq Task.where(status: "未着手")
   end
 
+  # priority_searchでステータスの結果が反映されていること
+  it "is priority result is reflected in priority_search" do
+    expect(Task.priority_search_param("高")).to eq Task.where(priority: "高")
+  end
+
   # title_searchでの曖昧検索が動作していること
   it "is ambiguous search in title_search is working" do
     expect(Task.title_search_ambiguous("タイトルa")).to eq Task.where("title LIKE?", "%タイトルa%")

@@ -6,26 +6,46 @@ class TasksController < ApplicationController
     if params[:sort] == "true"
       @tasks = Task.all.order("deadline DESC")
     # 絞り込み検索 - 条件を何も入力しなかったとき
-    elsif params[:title_search] == "" && params[:status_search] == "" && params[:btn_search]
+    elsif params[:title_search] == "" && params[:status_search] == "" && params[:priority_search] == "" && params[:btn_search]
       redirect_to tasks_path, notice: '絞り込み条件を入力してください。'
-    #  絞り込み検索 - タイトル & ステータス 両方の値が存在した場合の検索
+
+    # 絞り込み検索 - タイトル & ステータス & 優先順位　すべての値が存在した場合の検索
+    elsif params[:title_search].present? && params[:status_search].present? && params[:priority_search].present? && params[:btn_search] 
+      @tasks = Task.title_search_ambiguous(params[:title_search]).status_search_param(params[:status_search]).priority_search_param(params[:priority_search])
+      # タイトルが検索ヒットしなければアラートをだす
+      no_match
+    
+    #  絞り込み検索 - タイトル & ステータス の値が存在した場合の検索
     elsif params[:title_search].present? && params[:status_search].present? && params[:btn_search]
       @tasks = Task.title_search_ambiguous(params[:title_search]).status_search_param(params[:status_search])
       # @tasks = Task.where("title LIKE?", "%#{params[:title_search]}%").where(status: params[:status_search])
-      # タイトルが検索ヒットしなければアラートをだす
       no_match
-    # 絞り込み検索 - タイトルでの検索
+    
+    #  絞り込み検索 - タイトル & 優先順位 の値が存在した場合の検索
+    elsif params[:title_search].present? && params[:priority_search].present? && params[:btn_search]
+      @tasks = Task.title_search_ambiguous(params[:title_search]).priority_search_param(params[:priority_search])
+      # @tasks = Task.where("title LIKE?", "%#{params[:title_search]}%").where(status: params[:status_search])
+      no_match
+    
+    #  絞り込み検索 - ステータス & 優先順位 の値が存在した場合の検索
+    elsif params[:status_search].present? && params[:priority_search].present? && params[:btn_search]
+      @tasks = Task.status_search_param(params[:status_search]).priority_search_param(params[:priority_search])
+      no_match
+    
+    # 絞り込み検索 - タイトル、ステイタス、優先順位　それぞれ単体
     elsif params[:title_search].present?
       # LIKEによるタイトルのあいまい検索
       @tasks = Task.title_search_ambiguous(params[:title_search])
-      # タイトルが検索ヒットしなければアラートをだす
       no_match
-    #  絞り込み検索 - ステータスでの検索
     elsif params[:status_search].present?
       # @tasks = Task.where(status: params[:status_search])
       @tasks = Task.status_search_param(params[:status_search])
-      # タイトルが検索ヒットしなければアラートをだす
       no_match
+    elsif params[:priority_search].present?
+      # @tasks = Task.where(status: params[:status_search])
+      @tasks = Task.priority_search_param(params[:priority_search])
+      no_match
+    
     # 通常のindex表示
     else
       @tasks = Task.all.order("created_at DESC")
@@ -76,7 +96,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
   end
 
   def set_task
