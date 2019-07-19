@@ -1,0 +1,15 @@
+<h1>サインアップ</h1>
+
+<dl>
+<%= form_with(model: @user, local: true) do |f| %>
+  <dt><%= f.label :name %></dt>
+  <dd><%= f.text_field :name %></dd>
+  <dt><%= f.label :email %></dt>
+  <dd><%= f.text_field :email %></dd>
+  <dt><%= f.label :password %></dt>
+  <dd><%= f.text_field :password %></dd>
+  <dt><%= f.label :password_confimation %></dt>
+  <dd><%= f.text_field :password_confimation %></dd>
+  <dd><%= f.submit "Create my account" %></dd>
+<% end %>
+</dl>
