@@ -1,4 +1,14 @@
 <h1>サインアップ</h1>
+<% if @user.errors.any? %>
+  <div class="error_explanation">
+    <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <dl>
 <%= form_with(model: @user, local: true) do |f| %>
@@ -8,8 +18,8 @@
   <dd><%= f.text_field :email %></dd>
   <dt><%= f.label :password %></dt>
   <dd><%= f.text_field :password %></dd>
-  <dt><%= f.label :password_confimation %></dt>
-  <dd><%= f.text_field :password_confimation %></dd>
+  <dt><%= f.label :password_confirmation %></dt>
+  <dd><%= f.text_field :password_confirmation %></dd>
   <dd><%= f.submit "Create my account" %></dd>
 <% end %>
 </dl>
