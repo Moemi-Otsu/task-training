@@ -43,6 +43,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :test do
@@ -53,7 +54,6 @@ group :test do
   gem 'chromedriver-helper'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'database_cleaner'
   gem 'launchy'
 end
