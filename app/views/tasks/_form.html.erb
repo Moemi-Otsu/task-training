@@ -30,11 +30,10 @@
     <%= form.label :'priority', t('view.priority') %>
     <%= form.select :priority, [["低", "低"], ["中", "中"], ["高", "高"]] %>
   </div>
-  <div class="submit">
+  <div class="submit text-center">
     <%= form.submit t('view.submit') %>
   </div>
 <% end %>
 <div class="btns">
-  <p><%= link_to t('view.new'), new_task_path %></p>
   <p><%= link_to t('view.back_index'), tasks_path %></p>
 </div>

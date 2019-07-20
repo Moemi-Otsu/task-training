@@ -1,28 +1,35 @@
-<h1><%= t('view.title_h1_index') %></h1>
+<div class="col-md-12 col-sm-12">
 <p><%= notice %></p>
 
+<div class="task_search">
 <%= form_with(model: @task, url: tasks_path, local: true, method: 'get') do |form| %>
   <%= form.label :'title_search', t('view.sort_title_search') %>
-  <%= form.text_field :title_search, class: 'form_control' %>
+  <%= form.text_field :title_search, class: 'form_control', placeholder: 'タイトルを入力' %>
   <%= form.label :'status_search', t('view.sort_status_search') %>
   <%= form.select :status_search, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]], :prompt => t('view.sort_prompt') %>
   <%= form.label :'priority_search', t('view.priority') %>
   <%= form.select :priority_search, [["低", "低"], ["中", "中"], ["高", "高"]], :prompt => t('view.sort_prompt') %>
   <%= form.submit t('view.sort_status_btn'), name: 'btn_search' %>
 <% end %>
-
-<div class="btn_sort">
-  <p><%= link_to t('view.sort_deadline'), tasks_path(sort: "true") %></p>
-  <p><%= link_to t('view.sort_created_at'), tasks_path %></p>
+  <div class="btn_sort">
+    <ul>
+      <li><%= link_to t('view.sort_deadline'), tasks_path(sort: "true") %></li>
+      <li><%= link_to t('view.sort_created_at'), tasks_path %></li>
+    </ul>
+  </div>
 </div>
 
-<table>
+<h1><%= t('view.title_h1_index') %></h1>
+<table class="table">
   <tr>
-    <td><%= t('view.title') %></td>
-    <td><%= t('view.content') %></td>
-    <td><%= t('view.deadline') %></td>
-    <td><%= t('view.status') %></td>
-    <td><%= t('view.priority') %></td>
+    <th><%= t('view.title') %></th>
+    <th><%= t('view.content') %></th>
+    <th><%= t('view.deadline') %></th>
+    <th><%= t('view.status') %></th>
+    <th><%= t('view.priority') %></th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
+    <th>&nbsp;</th>
   </tr>
 <% @tasks.each do |task| %>
   <tr>
@@ -31,15 +38,13 @@
     <td class="sort_test_capybara"><%= task.deadline %></td>
     <td><%= task.status %></td>
     <td class="task_priority"><%= task.priority %></td>
-    <td><%= link_to t('view.detail'), task_path(task.id), class: 'submit' %></td>
-    <td><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
-    <td><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>
+    <td class="btn_detail"><%= link_to t('view.detail'), task_path(task.id), class: 'submit' %></td>
+    <td class="btn_edit"><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
+    <td class="btn_delete"><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>
   </tr>
 <% end %>
 </table>
 
 <%= paginate @tasks %>
 
-<div class="btns">
-  <p><%= link_to t('view.new'), new_task_path %></p>
 </div>
