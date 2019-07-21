@@ -5,38 +5,39 @@ class TasksController < ApplicationController
   PER = 10
 
   def index
+    tasks = Task.where(user_id: current_user)
     # 終了期限順にソート
     if params[:sort] == "true"
-      @tasks = Task.all.order("deadline DESC").page(params[:page]).per(PER)
+      @tasks = tasks.order("deadline DESC").page(params[:page]).per(PER)
     elsif params[:title_search] == "" && params[:status_search] == "" && params[:priority_search] == "" && params[:btn_search]
       redirect_to tasks_path, notice: '絞り込み条件を入力してください。'
     elsif params[:title_search].present? && params[:status_search].present? && params[:priority_search].present? && params[:btn_search] 
-      @tasks = Task.title_search_ambiguous(params[:title_search]).status_search_param(params[:status_search]).priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
+      @tasks = tasks.title_search_ambiguous(params[:title_search]).status_search_param(params[:status_search]).priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
       # タイトルが検索ヒットしなければアラートをだす
       no_match
     elsif params[:title_search].present? && params[:status_search].present? && params[:btn_search]
-      @tasks = Task.title_search_ambiguous(params[:title_search]).status_search_param(params[:status_search]).page(params[:page]).per(PER)
+      @tasks = tasks.title_search_ambiguous(params[:title_search]).status_search_param(params[:status_search]).page(params[:page]).per(PER)
       # @tasks = Task.where("title LIKE?", "%#{params[:title_search]}%").where(status: params[:status_search])
       no_match
     elsif params[:title_search].present? && params[:priority_search].present? && params[:btn_search]
-      @tasks = Task.title_search_ambiguous(params[:title_search]).priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
+      @tasks = tasks.title_search_ambiguous(params[:title_search]).priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
       no_match
     elsif params[:status_search].present? && params[:priority_search].present? && params[:btn_search]
-      @tasks = Task.status_search_param(params[:status_search]).priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
+      @tasks = tasks.status_search_param(params[:status_search]).priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
       no_match
     elsif params[:title_search].present?
       # LIKEによるタイトルのあいまい検索
-      @tasks = Task.title_search_ambiguous(params[:title_search]).page(params[:page]).per(PER)
+      @tasks = tasks.title_search_ambiguous(params[:title_search]).page(params[:page]).per(PER)
       no_match
     elsif params[:status_search].present?
       # @tasks = Task.where(status: params[:status_search])
-      @tasks = Task.status_search_param(params[:status_search]).page(params[:page]).per(PER)
+      @tasks = tasks.status_search_param(params[:status_search]).page(params[:page]).per(PER)
       no_match
     elsif params[:priority_search].present?
-      @tasks = Task.priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
+      @tasks = tasks.priority_search_param(params[:priority_search]).page(params[:page]).per(PER)
       no_match
     else
-      @tasks = Task.all.order("created_at DESC").page(params[:page]).per(PER)
+      @tasks = tasks.order("created_at DESC").page(params[:page]).per(PER)
     end
   end
 
@@ -50,6 +51,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path, notice: 'タスクを作成しました'
     else
@@ -97,5 +99,11 @@ class TasksController < ApplicationController
       redirect_to tasks_path, notice: '絞り込み条件にマッチするタスクはありません。'
     end
   end
+
+  # def user_not_loggedin
+  #   unless @task.user_id == current_user.id
+  #     redirect_to new_session_path
+  #   end
+  # end
 
 end
