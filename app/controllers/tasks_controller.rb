@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :login_judgment
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   # ページ送りのTask数を設定
   PER = 10
