@@ -98,6 +98,8 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'title', with: 'これはタイトルのテスト'
     fill_in 'content', with: 'これはコンテンツ内容テスト'
     fill_in 'deadline', with: '2019-07-27'
+    select '未着手', from: 'task_status'
+    select '高', from: 'task_priority'
 
     # 4.「登録する」というvalue（表記文字）のあるボタンをclick_onする（クリックする）する処理を書く
     click_on '投稿する'

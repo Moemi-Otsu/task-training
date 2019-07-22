@@ -80,6 +80,7 @@ class TasksController < ApplicationController
 
   def confirm
     @task = Task.new(task_params)
+    @task.user_id = current_user.id
     render :new if @task.invalid?
   end
 
