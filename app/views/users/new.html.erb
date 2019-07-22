@@ -12,14 +12,14 @@
 
 <dl>
 <%= form_with(model: @user, local: true) do |f| %>
-  <dt><%= f.label :name %></dt>
+  <dt><%= f.label :'name', t('view.user_login_name') %></dt>
   <dd><%= f.text_field :name %></dd>
-  <dt><%= f.label :email %></dt>
+  <dt><%= f.label :'email', t('view.user_login_email') %></dt>
   <dd><%= f.text_field :email %></dd>
-  <dt><%= f.label :password %></dt>
+  <dt><%= f.label :'password', t('view.user_login_password') %></dt>
   <dd><%= f.text_field :password %></dd>
-  <dt><%= f.label :password_confirmation %></dt>
+  <dt><%= f.label :'password_confirmation', t('view.user_login_password_confirmation') %></dt>
   <dd><%= f.text_field :password_confirmation %></dd>
-  <dd><%= f.submit "Create my account" %></dd>
+  <dd><%= f.submit t('view.user_login_create') %></dd>
 <% end %>
 </dl>

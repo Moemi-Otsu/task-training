@@ -2,12 +2,12 @@
 
 <%= form_with(scope: :session, url: sessions_path, local:true) do |f| %>
 
-  <%= f.label :email %>
+  <%= f.label :'email', t('view.user_login_email') %>
   <%= f.email_field :email %>
 
-  <%= f.label :password %>
+  <%= f.label :'password', t('view.user_login_password') %>
   <%= f.password_field :password %>
 
-  <%= f.submit "Log in" %>
+  <%= f.submit t('view.login') %>
 
 <% end %>

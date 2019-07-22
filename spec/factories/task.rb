@@ -25,4 +25,12 @@ FactoryBot.define do
     priority { '低' }
   end
 
+  factory :fourth_task, class: Task do
+    title { 'タイトルdタイトルd' }
+    content { 'コンテンツdコンテンツdコンテンツd' }
+    deadline { '2019-08-21' }
+    status { '完了' }
+    priority { '低' }
+  end
+
 end
