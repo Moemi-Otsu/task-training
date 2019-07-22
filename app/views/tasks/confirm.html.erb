@@ -1,3 +1,4 @@
+<div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
 <h1><%= t('view.title_h1_confirm') %></h1>
 
 <%= form_with(model: @task, url: tasks_path, local: true) do |form| %>
@@ -23,3 +24,4 @@
   <%= form.hidden_field :priority %>
   <%= form.submit t('view.back'), name: 'back' %>
 <% end %>
+</div>

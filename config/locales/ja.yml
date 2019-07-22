@@ -227,9 +227,10 @@ ja:
     title_h1_confirm: 以下の内容で送信する
     title_h1_edit: 編集する
     sort_deadline: 終了期限順に表示
-    sort_created_at: 作成順に表示
+    sort_created_at: リセット
     sort_status_btn: 絞り込み検索
     sort_title_search: タイトル検索
+    sort_title_placeholder: タイトルを入力
     sort_status_search: ステータス検索
     sort_prompt: 選択してください
     user_login_name: 名前

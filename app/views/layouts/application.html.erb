@@ -4,8 +4,11 @@
     <title>TaskTraining</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Allerta+Stencil&display=swap" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -24,5 +27,31 @@
     <% end %>
 
     <%= yield %>
+
+    <header class="navbar navbar-header clearfix">
+      <h1 class="logo"><%= link_to 'Task Training', tasks_path %><span>-&nbsp;はじめよう、タスク管理&nbsp;-</span></h1>
+      <div class="new_btn">
+        <!--<p><%= link_to t('view.new'), new_task_path %></p>-->
+        <p><%= link_to new_task_path do %>
+              <i class="fas fa-plus-circle"></i>
+        <% end %></p>
+      </div>
+      <ul>
+        <li><%= link_to 'aaa', tasks_path %></li>
+        <li><%= link_to 'bbb', tasks_path %></li>
+        <li><%= link_to 'ccc', tasks_path %></li>
+      </ul>
+    </header>
+
+    <div class="wrapper container">
+      <div class="row">
+      <%= yield %>
+      </div>
+    </div>
+
+    <%# <footer>
+      <p>Task Training</p>
+    </footer>  %>
+  
   </body>
 </html>
