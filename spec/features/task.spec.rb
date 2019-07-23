@@ -14,28 +14,6 @@ RSpec.feature "タスク管理機能", type: :feature do
     FactoryBot.create(:fourth_task, user_id: @second_user.id)
   end
 
-  scenario "ユーザー新規登録テスト" do
-    user_create
-    expect(page).to have_content 'xxxのページ'
-  end
-
-  scenario "ユーザ登録（create）をした時、同時にログイン" do
-    user_create
-    # ログインしていないと、tasks_path（タスク一覧）を見られないので、タスク一覧を見れたらOK
-    visit tasks_path
-    expect(page).to have_content 'タスク一覧'
-  end
-
-  scenario "ログイン画面テスト" do
-    user_login_factory
-    expect(page).to have_content 'タスク一覧'
-  end
-
-  scenario "ログインしていないのにタスクのページに飛ぼうとした場合は、ログインページに遷移" do
-    visit tasks_path
-    expect(page).to have_content 'ログインしてください。'
-  end
-
   scenario "自分が作成したタスクだけを表示" do
     visit new_session_path
     fill_in 'session_email', with: 'zzz@mail.com'
@@ -54,30 +32,6 @@ RSpec.feature "タスク管理機能", type: :feature do
 
     page.has_no_text?('タイトルaタイトルa')
     page.has_content?('タイトルx')
-  end
-
-  scenario "ログアウト機能確認" do
-    visit new_session_path
-    fill_in 'session_email', with: 'zzz@mail.com'
-    fill_in 'session_password', with: 'zzzzzz'
-    click_on 'commit'
-    click_on 'ログアウト'
-    expect(page).to have_content 'ログアウトしました'
-  end
-
-  scenario "ログインしている時は、ユーザー登録画面（new画面）に行かせない" do
-    user_login_factory
-    visit new_user_path
-    expect(page).to have_content 'ログイン'
-  end
-
-  scenario "自分（current_user）以外のユーザのマイページ（userのshow画面）に行かせない" do
-    user_login_factory
-    visit user_path(@user.id)
-    # @second_userのnameはyyyなので、以下でログインページにリダイレクトされる
-    visit user_path(@second_user.id)
-    # リダイレクト先のログインページにが表示されたら成功
-    expect(page).to have_content 'ログイン'
   end
 
   scenario "タスク一覧のテスト" do
