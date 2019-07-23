@@ -32,13 +32,14 @@
         </ul>
       </header>
     <% else %>
-    <header>
-      <h1 class="logo"><%= link_to 'Task Training', tasks_path %><span>-&nbsp;はじめよう、タスク管理&nbsp;-</span></h1>
-      <ul>
-        <li><%= link_to 'サインアップ', new_user_path %></li>
-        <li><%= link_to 'ログイン', new_session_path %></li>
-      </ul>
-    </header>
+      <header class="login-page">
+        <h1 class="logo">Task Training</h1>
+        <p>-&nbsp;はじめよう、タスク管理&nbsp;-</p>
+        <!--<ul>
+          <li><%= link_to 'サインアップ', new_user_path %></li>
+          <li><%= link_to 'ログイン', new_session_path %></li>
+        </ul>-->
+      </header>
     <% end %>
 
     <div class="wrapper container">

@@ -1,13 +1,11 @@
-<h1>ログイン</h1>
-
-<%= form_with(scope: :session, url: sessions_path, local:true) do |f| %>
-
-  <%= f.label :'email', t('view.user_login_email') %>
-  <%= f.email_field :email %>
-
-  <%= f.label :'password', t('view.user_login_password') %>
-  <%= f.password_field :password %>
-
-  <%= f.submit t('view.login') %>
-
-<% end %>
+<div class="signup-login col-md-4 col-md-offset-4 col-sm-12">
+  <h1>ログイン</h1>
+  <ul>
+  <%= form_with(scope: :session, url: sessions_path, local:true) do |f| %>
+    <li><%= f.email_field :email, placeholder: t('view.user_login_email') %></li>
+    <li><%= f.password_field :password, placeholder: t('view.user_login_password') %></li>
+    <div class="submit"><%= f.submit t('view.login') %></div>
+  <% end %>
+  </ul>
+  <p><%= link_to '新規登録', new_user_path %></p>
+</div>

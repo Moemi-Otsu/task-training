@@ -1,8 +1,8 @@
-<div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
-  <h1>サインアップ</h1>
+<div class="signup-login col-md-4 col-md-offset-4 col-sm-12">
+  <h1>新規登録</h1>
   <% if @user.errors.any? %>
-    <div class="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this @user from being saved:</h2>
+    <div class="error_explanation user-errors">
+      <h2><%= pluralize(@user.errors.count, "件") %> のエラーがあります。</h2>
       <ul>
         <% @user.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -11,17 +11,14 @@
     </div>
   <% end %>
 
-  <dl>
+  <ul>
   <%= form_with(model: @user, local: true) do |f| %>
-    <dt><%= f.label :'name', t('view.user_login_name') %></dt>
-    <dd><%= f.text_field :name %></dd>
-    <dt><%= f.label :'email', t('view.user_login_email') %></dt>
-    <dd><%= f.text_field :email %></dd>
-    <dt><%= f.label :'password', t('view.user_login_password') %></dt>
-    <dd><%= f.text_field :password %></dd>
-    <dt><%= f.label :'password_confirmation', t('view.user_login_password_confirmation') %></dt>
-    <dd><%= f.text_field :password_confirmation %></dd>
-    <dd><%= f.submit t('view.user_login_create') %></dd>
+    <li><%= f.text_field :name, placeholder: t('view.user_login_name') %></li>
+    <li><%= f.text_field :email, placeholder: t('view.user_login_email') %></li>
+    <li><%= f.text_field :password, placeholder: t('view.user_login_password') %></li>
+    <li><%= f.text_field :password_confirmation, placeholder: t('view.user_login_password_confirmation') %></li>
+    <li class="submit"><%= f.submit t('view.user_login_create') %></li>
   <% end %>
-  </dl>
+  </ul>
+  <p><%= link_to 'ログイン', new_session_path %></p>
 </div>
