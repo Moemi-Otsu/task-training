@@ -108,7 +108,7 @@ header.login-page p { color: #fff; }
 header.login-page h1.logo a:hover { text-decoration: none; }
 
 .signup-login {
-  /* margin-top: -50px; */
+  margin-bottom: 50px;
 }
 .signup-login h1 {
   text-align: center;
