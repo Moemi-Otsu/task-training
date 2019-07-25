@@ -1,0 +1,44 @@
+<div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
+  <h1><%= t('view.title_h1_edit') %></h1>
+
+  <%= form_with(model: @task, local: true ,url: choose_new_or_edit ) do |form| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @task.errors.count %><%= t('view.alert_error_num') %></h2>
+        <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="task_title">
+      <%= form.label :'title', t('view.title') %>
+      <%= form.text_field :title, id: 'title' %>
+    </div>
+    <div class="task_title">
+      <%= form.label :'content', t('view.content') %>
+      <%= form.text_field :content, id: 'content' %>
+    </div>
+    <div class="task_title">
+      <%= form.label :'deadline', t('view.deadline') %>
+      <%= form.date_field :deadline, id: 'deadline' %>
+    </div>
+    <div class="task_title">
+      <%= form.label :'status', t('view.status') %>
+      <%= form.select :status, [["未着手", "未着手"], ["着手中", "着手中"], ["完了", "完了"]] %>
+    </div>
+    <div class="task_title">
+      <%= form.label :'priority', t('view.priority') %>
+      <%= form.select :priority, [["低", "低"], ["中", "中"], ["高", "高"]] %>
+    </div>
+    <div class="submit text-center">
+      <%= form.submit t('view.submit') %>
+    </div>
+  <% end %>
+  <div class="btns">
+    <p><%= link_to t('view.back_index'), tasks_path %></p>
+  </div>
+
+</div>

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def new
     # ログインしている時は、ユーザー登録画面（new画面）に行かせない
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     user_not_logged_in
   end
 
@@ -29,7 +30,16 @@ class UsersController < ApplicationController
     user_not_logged_in
   end
 
+  def destroy
+    @user.destroy
+    redirect_to admin_users_path
+  end
+
   private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)

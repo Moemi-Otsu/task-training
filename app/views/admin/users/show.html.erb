@@ -1,0 +1,17 @@
+<div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
+  <h1><%= t('view.title_h1_show') %></h1>
+  <div class="show_box">
+    <p><%= t('view.title') %>：<%= @task.title %></p>
+    <p><%= t('view.content') %>：<%= @task.content %></p>
+    <p><%= t('view.deadline') %>：<%= @task.deadline %></p>
+    <p><%= t('view.status') %>：<%= @task.status %></p>
+    <p><%= t('view.priority') %>：<%= @task.priority %></p>
+    <p class="btn_edit"><%= link_to t('view.edit'), edit_task_path %></p>
+  </div>
+  <div class="btns">
+    <ul>
+      <li><%= link_to t('view.new'), new_task_path %></li>
+      <li><%= link_to t('view.back_index'), tasks_path %></li>
+    </ul>
+  </div>
+</div>
