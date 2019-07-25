@@ -5,6 +5,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 gem 'rails', '~> 5.2.3'
 
+# Secure
+gem 'bcrypt', '3.1.11'
+
 # Middleware
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
@@ -23,6 +26,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'kaminari', '~> 0.17.0'
 gem 'kaminari-bootstrap'
 
+# Rspec
+gem 'rspec-rails'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
@@ -37,9 +43,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # Rspec
-  gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :test do
@@ -48,11 +53,8 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
-  # Rspec
-  gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'database_cleaner'
   gem 'launchy'
 end

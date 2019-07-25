@@ -218,6 +218,7 @@ ja:
     detail: 詳細
     edit: 編集
     delete: 削除
+    login: ログイン
     alert_delete: 本当に削除しますか？
     alert_error_num: 件のエラーがあります。
     title_h1_index: タスク一覧
@@ -232,3 +233,8 @@ ja:
     sort_title_placeholder: タイトルを入力
     sort_status_search: ステータス検索
     sort_prompt: 選択してください
+    user_login_name: 名前
+    user_login_email: メールアドレス
+    user_login_password: パスワード
+    user_login_password_confirmation: パスワード確認
+    user_login_create: アカウント作成

@@ -13,21 +13,34 @@
   </head>
 
   <body>
-
-    <header class="navbar navbar-header clearfix">
-      <h1 class="logo"><%= link_to 'Task Training', tasks_path %><span>-&nbsp;はじめよう、タスク管理&nbsp;-</span></h1>
-      <div class="new_btn">
-        <!--<p><%= link_to t('view.new'), new_task_path %></p>-->
-        <p><%= link_to new_task_path do %>
-              <i class="fas fa-plus-circle"></i>
-        <% end %></p>
-      </div>
-      <ul>
-        <li><%= link_to 'aaa', tasks_path %></li>
-        <li><%= link_to 'bbb', tasks_path %></li>
-        <li><%= link_to 'ccc', tasks_path %></li>
-      </ul>
-    </header>
+    <!-- sessionログインで、メールアドレスが存在しなかったらフラッシュメッセージ -->
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <!-- sessionログイン前とログイン後の出し分け -->
+    <% if logged_in? %>
+      <header class="navbar navbar-header clearfix">
+        <h1 class="logo"><%= link_to 'Task Training', tasks_path %><span>-&nbsp;はじめよう、タスク管理&nbsp;-</span></h1>
+        <div class="new_btn">
+          <p><%= link_to new_task_path do %>
+                <i class="fas fa-plus-circle"></i>
+          <% end %></p>
+        </div>
+        <ul>
+          <li><%= link_to 'プロフィール', user_path(current_user.id) %></li>
+          <li><%= link_to 'ログアウト', session_path(current_user.id), method: :delete %></li>
+        </ul>
+      </header>
+    <% else %>
+      <header class="login-page">
+        <h1 class="logo">Task Training</h1>
+        <p>-&nbsp;はじめよう、タスク管理&nbsp;-</p>
+        <!--<ul>
+          <li><%= link_to 'サインアップ', new_user_path %></li>
+          <li><%= link_to 'ログイン', new_session_path %></li>
+        </ul>-->
+      </header>
+    <% end %>
 
     <div class="wrapper container">
       <div class="row">

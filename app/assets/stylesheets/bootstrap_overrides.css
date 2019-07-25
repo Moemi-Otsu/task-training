@@ -1,5 +1,9 @@
-
+/* kaminari pagenation */
 ul.pagination { margin-bottom: 50px; }
 ul.pagination li { font-size: 1.2rem; }
 ul.pagination li a { color: #474747; }
-ul.pagination li.page { background: #ffa8b7; }
+.pagination>.active>a,
+.pagination>.active>a:hover {
+  background: rgba(255,255,255,0.4);
+  border: 1px solid #ddd;
+}

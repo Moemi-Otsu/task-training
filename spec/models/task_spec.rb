@@ -12,16 +12,25 @@ describe Task do
 
   # 重複したタイトルなら無効な状態であること
   it "is invalid with a duplicate title" do
+    User.create(
+      name: "aaa",
+      email: "aaa@mail.com",
+      password: "aaaaaa",
+      password_confirmation: "aaaaaa")
     Task.create(
       title: 'タイトルA',
       content: 'コンテンツAコンテンツAコンテンツA',
       deadline: '2019-07-18',
-      status: '未着手')
-    task =  Task.new(
+      status: '未着手',
+      priority: '高',
+      user_id: User.first.id)
+    task = Task.new(
       title: 'タイトルA',
       content: 'コンテンツAコンテンツAコンテンツA',
       deadline: '2019-07-27',
-      status: '着手')
+      status: '着手',
+      priority: '高',
+      user_id: User.first.id)
     task.valid?
     expect(task.errors[:title]).to include("はすでに存在します")
   end
