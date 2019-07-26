@@ -19,7 +19,7 @@
     <% end %>
     <!-- sessionログイン前とログイン後の出し分け -->
     <% if logged_in? %>
-      <header class="navbar navbar-header clearfix">
+      <header class="navbar navbar-header clearfix row">
         <h1 class="logo"><%= link_to 'Task Training', tasks_path %><span>-&nbsp;はじめよう、タスク管理&nbsp;-</span></h1>
         <div class="new_btn">
           <p><%= link_to new_task_path do %>
@@ -29,6 +29,7 @@
         <ul>
           <li><%= link_to 'プロフィール', user_path(current_user.id) %></li>
           <li><%= link_to 'ログアウト', session_path(current_user.id), method: :delete %></li>
+          <li><%= link_to '管理者メニュー', admin_users_path %></li>
         </ul>
       </header>
     <% else %>

@@ -233,8 +233,14 @@ ja:
     sort_title_placeholder: タイトルを入力
     sort_status_search: ステータス検索
     sort_prompt: 選択してください
+    user_login_user_id: ID
     user_login_name: 名前
     user_login_email: メールアドレス
     user_login_password: パスワード
     user_login_password_confirmation: パスワード確認
     user_login_create: アカウント作成
+    user_task_count: タスク数
+    admin_index: 管理画面ユーザー一覧
+    admin_user_new: ユーザー新規作成
+    admin_user_edit: ユーザー情報編集
+    admin_tasks_count: タスク数

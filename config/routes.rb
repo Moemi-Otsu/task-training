@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # get 'sessions/new'
   # root 'users/new'
+  namespace :admin do
+    resources :users
+  end
   resources :tasks do
     collection do
       post :confirm

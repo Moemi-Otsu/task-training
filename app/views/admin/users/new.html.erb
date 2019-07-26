@@ -1,0 +1,28 @@
+<div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
+  <h1>ユーザー新規登録</h1>
+  <% if @user.errors.any? %>
+    <div class="error_explanation user-errors">
+      <h2><%= pluralize(@user.errors.count, "件") %> のエラーがあります。</h2>
+      <ul>
+        <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_with(model: @user, local: true) do |f| %>
+    <ul class="admin-form">
+      <li><%= f.text_field :name, placeholder: t('view.user_login_name') %></li>
+      <li><%= f.text_field :email, placeholder: t('view.user_login_email') %></li>
+      <li><%= f.text_field :password, placeholder: t('view.user_login_password') %></li>
+      <li><%= f.text_field :password_confirmation, placeholder: t('view.user_login_password_confirmation') %></li>
+    </ul>
+    <div class="text-center">
+      <%= f.submit t('view.user_login_create') %>
+    </div>
+  <% end %>
+  <div class="btns">
+    <%= link_to t('view.back_index'), admin_users_path %>
+  </div>
+</div>
