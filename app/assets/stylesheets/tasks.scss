@@ -1,5 +1,6 @@
 
 /* task_search 絞り込み検索 */
+
 .task_search {
   width: 100%;
   margin: 0 0 30px;
@@ -103,8 +104,8 @@
 .table tr:nth-child(even):hover { background: rgba(255,255,255, 0.9); }
 .table tr:first-of-type:hover { background: rgba(255,255,255,0.7); }
 
-.table tr td:nth-child(1),
-.table tr td:nth-child(2) {
+.table tr td.task-title,
+.table tr td.task-content {
   width: 23%;
 }
 
@@ -159,18 +160,54 @@
 
 .wrapper-box form { width: 320px; margin: 0 auto; }
 
-.wrapper-box form label {
+.wrapper-box .task_title label {
   margin: 0 0 20px;
   width: 100px;
 }
 
-.wrapper-box form input[type="text"] {
+.wrapper-box .task_title input[type="text"] {
   width: 200px;
   height: 25px;
   coler: #fff;
   border-radius: 5px;
   border: solid 1px #ccc;
 }
+
+.wrapper-box .task_title select {
+  width: 130px;
+  height: 25px;
+}
+
+/* admin */
+
+.wrapper-box ul.admin-form li input[type="text"] {
+  width: 100%;
+  height: 35px;
+  margin-bottom: 10px;
+  padding: 0 5px;
+  coler: #fff;
+  border-radius: 5px;
+  border: solid 1px #ccc;
+}
+
+/* admin-column index */
+
+.admin-column p.admin-new-user {
+  margin: 20px 0;
+}
+
+.admin-column p.admin-new-user a {
+  padding: 7px 20px;
+  background: rgba(255,255,255,0.8);
+  font-size: 1.3rem;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  transition: all 0.2s ease;
+  font-weight: bold;
+  color: #363636;
+}
+
+/* form submit btn */
 
 .wrapper-box form input[type="submit"] {
   margin: 15px 0;
@@ -184,11 +221,6 @@
 }
 
 .wrapper-box form input[type="submit"]:hover { color: #ef7a82; }
-
-.wrapper-box form select {
-  width: 130px;
-  height: 25px;
-}
 
 /* show.html */
 
@@ -213,6 +245,12 @@
   text-decoration: none;
   color: #ef7a82;
   transition: all 0.2s ease;
+}
+
+.wrapper .btns a {
+  display: block;
+  margin: 20px auto 20px;
+  text-align: center;
 }
 
 .wrapper .btns ul {

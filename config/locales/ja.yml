@@ -239,3 +239,8 @@ ja:
     user_login_password: パスワード
     user_login_password_confirmation: パスワード確認
     user_login_create: アカウント作成
+    user_task_count: タスク数
+    admin_index: 管理画面ユーザー一覧
+    admin_user_new: ユーザー新規作成
+    admin_user_edit: ユーザー情報編集
+    admin_tasks_count: タスク数

@@ -1,4 +1,4 @@
-<div class="signup-login col-md-4 col-md-offset-4 col-sm-12">
+<div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
   <h1>ユーザー新規登録</h1>
   <% if @user.errors.any? %>
     <div class="error_explanation user-errors">
@@ -11,13 +11,18 @@
     </div>
   <% end %>
 
-  <ul>
   <%= form_with(model: @user, local: true) do |f| %>
-    <li><%= f.text_field :name, placeholder: t('view.user_login_name') %></li>
-    <li><%= f.text_field :email, placeholder: t('view.user_login_email') %></li>
-    <li><%= f.text_field :password, placeholder: t('view.user_login_password') %></li>
-    <li><%= f.text_field :password_confirmation, placeholder: t('view.user_login_password_confirmation') %></li>
-    <li class="submit"><%= f.submit t('view.user_login_create') %></li>
+    <ul class="admin-form">
+      <li><%= f.text_field :name, placeholder: t('view.user_login_name') %></li>
+      <li><%= f.text_field :email, placeholder: t('view.user_login_email') %></li>
+      <li><%= f.text_field :password, placeholder: t('view.user_login_password') %></li>
+      <li><%= f.text_field :password_confirmation, placeholder: t('view.user_login_password_confirmation') %></li>
+    </ul>
+    <div class="text-center">
+      <%= f.submit t('view.user_login_create') %>
+    </div>
   <% end %>
-  </ul>
+  <div class="btns">
+    <%= link_to t('view.back_index'), admin_users_path %>
+  </div>
 </div>

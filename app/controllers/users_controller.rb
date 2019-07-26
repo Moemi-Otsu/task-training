@@ -30,9 +30,17 @@ class UsersController < ApplicationController
     user_not_logged_in
   end
 
+  def update
+    if @user.update(user_params)
+      redirect_to admin_users_path, notice: 'ユーザー情報を編集しました！'
+    else
+      render 'admin/users/edit'
+    end
+  end
+
   def destroy
     @user.destroy
-    redirect_to admin_users_path
+    redirect_to admin_users_path, notice: 'ユーザーを削除しました'
   end
 
   private
