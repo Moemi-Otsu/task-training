@@ -5,17 +5,4 @@ class User < ApplicationRecord
   before_validation { email.downcase! }
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
-
-  before_destroy :delete_all_users
-
-  private
-
-  def self.delete_all_users
-    user_admin = User.where(admin: true)
-    if user_admin.size == 1
-      errors.add :base, '少なくとも1つ、管理ユーザーアカウントが必要です。'
-      return false
-    end
-  end
-
 end
