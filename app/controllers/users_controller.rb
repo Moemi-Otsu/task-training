@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :delete_all_users, only: [:destroy]
 
   def new
     # ログインしている時は、ユーザー登録画面（new画面）に行かせない
@@ -39,8 +40,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user.destroy
-    redirect_to admin_users_path, notice: 'ユーザーを削除しました'
+    if @admin_user.present?
+      @user.destroy
+      redirect_to admin_users_path, notice: 'ユーザーを削除しました'
+    else
+      redirect_to admin_users_path, notice: '管理者ユーザー不在を防止するため、削除できませんでした。'
+    end
   end
 
   private
@@ -50,12 +55,19 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
 
   def user_not_logged_in
     unless current_user.id == @user.id
       redirect_to new_session_path
+    end
+  end
+
+  def delete_all_users
+    user_admin = User.where(admin: true)
+    if user_admin.size == 1
+       @admin_user = false
     end
   end
 

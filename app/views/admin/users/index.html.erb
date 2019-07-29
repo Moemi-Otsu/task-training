@@ -7,6 +7,7 @@
       <th><%= t('view.user_login_name') %></th>
       <th><%= t('view.user_login_email') %></th>
       <th><%= t('view.admin_tasks_count') %></th>
+      <th><%= t('view.admin_user') %></th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
       <th>&nbsp;</th>
@@ -17,6 +18,12 @@
       <td><%= users.name %></td>
       <td><%= users.email %></td>
       <td><%= users.tasks.size %></td>
+      <td><%= users.admin %>
+        <!--<% unless users.admin.present? %>
+          <%= link_to '管理者ユーザーに設定', admin_user_path(users.id), method: :put, params: { user: { admin: false } }, classl: :btn_add_admin %>
+        <% else %>
+        <% end %>-->
+      </td>
       <td class="btn_detail"><%= link_to t('view.detail'), admin_user_path(users.id) %></td>
       <td class="btn_edit"><%= link_to t('view.edit'), edit_admin_user_path(users.id) %></td>
       <td class="btn_delete"><%= link_to t('view.delete'), user_path(users.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>

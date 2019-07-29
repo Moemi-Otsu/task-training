@@ -7,4 +7,8 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_path, notice: 'ログインしてください。' unless current_user
   end
 
+  def admin_login_judgment
+    redirect_to new_session_path, notice: '管理者ユーザーアカウントでログインしてください。' unless current_user.admin.present?
+  end
+
 end
