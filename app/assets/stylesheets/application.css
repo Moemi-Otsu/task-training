@@ -229,7 +229,8 @@ footer {
   text-align: center;
 }
 
-.danger {
+.danger,
+.alert {
   padding: 10px;
   background: rgba(255, 255, 255, 0.8);
   color: #ef7a82;

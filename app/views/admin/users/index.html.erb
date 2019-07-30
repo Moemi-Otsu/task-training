@@ -24,9 +24,9 @@
         <% else %>
         <% end %>-->
       </td>
-      <td class="btn_detail"><%= link_to t('view.detail'), admin_user_path(users.id) %></td>
-      <td class="btn_edit"><%= link_to t('view.edit'), edit_admin_user_path(users.id) %></td>
-      <td class="btn_delete"><%= link_to t('view.delete'), user_path(users.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>
+      <td><%= link_to t('view.detail'), admin_user_path(users.id), class: 'btn' %></td>
+      <td><%= link_to t('view.edit'), edit_admin_user_path(users.id), class: 'btn' %></td>
+      <td><%= link_to t('view.delete'), user_path(users.id), method: :delete, data: { confirm: t('view.alert_delete') }, class: 'btn' %></td>
     </tr>
   <% end %>
   </table>

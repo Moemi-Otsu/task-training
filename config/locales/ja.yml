@@ -211,6 +211,7 @@ ja:
     deadline: 終了期日
     status: ステータス
     priority: 優先順位
+    task_empty: タスクが登録されていません。
     submit: 投稿する
     new: 新規作成
     back_index: 一覧へ戻る
