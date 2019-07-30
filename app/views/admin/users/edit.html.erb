@@ -17,6 +17,7 @@
       <li><%= f.text_field :email, placeholder: t('view.user_login_email') %></li>
       <li><%= f.text_field :password, placeholder: t('view.user_login_password') %></li>
       <li><%= f.text_field :password_confirmation, placeholder: t('view.user_login_password_confirmation') %></li>
+      <li>管理者ユーザー：<%= f.select :admin, [[false, false], [true, true]] %></li>
     </ul>
     <div class="text-center">
       <%= f.submit t('view.edit') %>

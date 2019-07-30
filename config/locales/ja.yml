@@ -211,6 +211,7 @@ ja:
     deadline: 終了期日
     status: ステータス
     priority: 優先順位
+    task_empty: タスクが登録されていません。
     submit: 投稿する
     new: 新規作成
     back_index: 一覧へ戻る
@@ -244,3 +245,4 @@ ja:
     admin_user_new: ユーザー新規作成
     admin_user_edit: ユーザー情報編集
     admin_tasks_count: タスク数
+    admin_user: 管理者ユーザー

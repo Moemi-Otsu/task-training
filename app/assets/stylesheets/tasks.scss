@@ -109,10 +109,13 @@
   width: 23%;
 }
 
-.table td.btn_detail a {
-  padding: 5px 20%;
+.table td a.btn {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 0;
   background: rgba(255,255,255,0.8);
   font-size: 1.2rem;
+  text-align: center;
   border-radius: 5px;
   border: 1px solid #e1e1e1;
   transition: all 0.2s ease;
@@ -120,29 +123,7 @@
   color: #363636;
 }
 
-.table td.btn_edit a {
-  padding: 5px 20%;
-  background: rgba(255,255,255,0.8);
-  font-size: 1.2rem;
-  border-radius: 5px;
-  border: 1px solid #e1e1e1;
-  transition: all 0.2s ease;
-  font-weight: bold;
-  color: #363636;
-}
-
-.table td.btn_delete a {
-  padding: 5px 20%;
-  background: rgba(255,255,255,0.8);
-  font-size: 1.2rem;
-  border-radius: 5px;
-  border: 1px solid #e1e1e1;
-  transition: all 0.2s ease;
-  font-weight: bold;
-  color: #363636;
-}
-
-.table td.btn_detail a:hover { color: #ef7a82 }
+.table td a:hover { color: #ef7a82 }
 
 /* Lower */
 

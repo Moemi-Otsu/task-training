@@ -31,17 +31,23 @@
     <th>&nbsp;</th>
     <th>&nbsp;</th>
   </tr>
-<% @tasks.each do |task| %>
+<% if @tasks.empty? %>
   <tr>
-    <td class="task_title"><%= task.title %></td>
-    <td><%= task.content %></td>
-    <td class="sort_test_capybara"><%= task.deadline %></td>
-    <td><%= task.status %></td>
-    <td class="task_priority"><%= task.priority %></td>
-    <td class="btn_detail"><%= link_to t('view.detail'), task_path(task.id), class: 'submit' %></td>
-    <td class="btn_edit"><%= link_to t('view.edit'), edit_task_path(task.id) %></td>
-    <td class="btn_delete"><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') } %></td>
+    <td colspan="8"><%= t('view.task_empty') %></td>
   </tr>
+<% else %>
+  <% @tasks.each do |task| %>
+    <tr>
+      <td class="task_title"><%= task.title %></td>
+      <td><%= task.content %></td>
+      <td class="sort_test_capybara"><%= task.deadline %></td>
+      <td><%= task.status %></td>
+      <td class="task_priority"><%= task.priority %></td>
+      <td><%= link_to t('view.detail'), task_path(task.id), class: 'submit', class: 'btn' %></td>
+      <td><%= link_to t('view.edit'), edit_task_path(task.id), class: 'btn' %></td>
+      <td><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') }, class: 'btn' %></td>
+    </tr>
+  <% end %>
 <% end %>
 </table>
 

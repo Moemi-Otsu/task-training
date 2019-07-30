@@ -12,6 +12,7 @@ RSpec.feature "ユーザー管理admin機能", type: :feature do
     # Task.create!(title: 'タイトルb', content: 'コンテンツb')
     @second_user = FactoryBot.create(:second_user)
     FactoryBot.create(:fourth_task, user_id: @second_user.id)
+    @third_user = FactoryBot.create(:third_user)
   end
 
   scenario "admin - indexページ表示" do

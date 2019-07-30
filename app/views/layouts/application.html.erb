@@ -29,7 +29,10 @@
         <ul>
           <li><%= link_to 'プロフィール', user_path(current_user.id) %></li>
           <li><%= link_to 'ログアウト', session_path(current_user.id), method: :delete %></li>
+        <% if @current_user.admin.present? %>
+          <!-- adminの場合 -->
           <li><%= link_to '管理者メニュー', admin_users_path %></li>
+        <% end %>
         </ul>
       </header>
     <% else %>

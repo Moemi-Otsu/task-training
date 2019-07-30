@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # get 'sessions/new'
-  # root 'users/new'
+  root to: 'users#new'
+
   namespace :admin do
     resources :users
   end
@@ -11,5 +11,4 @@ Rails.application.routes.draw do
   end
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
-  # resources :users, only: [:new, :create, :show]
 end
