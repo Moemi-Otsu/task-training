@@ -47,10 +47,12 @@ class TasksController < ApplicationController
     else
       @task = Task.new
     end
+    # @task.build_task
   end
 
   def create
-    @task = Task.new(task_params)
+    # @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     @task.user_id = current_user.id
     if @task.save
       redirect_to tasks_path, notice: 'タスクを作成しました'
@@ -60,12 +62,14 @@ class TasksController < ApplicationController
   end
 
   def show
+    @labels = current_user.labels.where(task_id: @task.id)
   end
 
   def edit
   end
 
   def update
+    @labels = Label.all
     if @task.update(task_params)
       redirect_to tasks_path, notice: "タスクを更新しました"
     else
@@ -87,7 +91,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, label_ids: [])
   end
 
   def set_task
@@ -100,11 +104,5 @@ class TasksController < ApplicationController
       redirect_to tasks_path, notice: '絞り込み条件にマッチするタスクはありません。'
     end
   end
-
-  # def user_not_loggedin
-  #   unless @task.user_id == current_user.id
-  #     redirect_to new_session_path
-  #   end
-  # end
 
 end

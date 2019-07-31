@@ -1,6 +1,8 @@
 class Task < ApplicationRecord
   belongs_to :user
   has_many :labels, dependent: :destroy
+  has_many :label_users, through: :labels, source: :user
+  accepts_nested_attributes_for :labels, allow_destroy: true
 
   # 内容が空／同じものの重複
   validates :title, presence: true, uniqueness: true

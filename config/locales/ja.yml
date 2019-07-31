@@ -212,6 +212,8 @@ ja:
     status: ステータス
     priority: 優先順位
     task_empty: タスクが登録されていません。
+    label_name: ラベル
+    label_new: 新規ラベル
     submit: 投稿する
     new: 新規作成
     back_index: 一覧へ戻る

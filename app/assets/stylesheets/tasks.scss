@@ -228,6 +228,20 @@
   transition: all 0.2s ease;
 }
 
+.show_box .show_labels li {
+  display: inline-block;
+  padding: 3px 7px;
+  margin: 0 10px 5px 0;
+  border: 1px solid #faaca8;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 1.1rem;
+}
+
+.show_box .show_labels li:last-child {
+  margin: 0;
+}
+
 .wrapper .btns a {
   display: block;
   margin: 20px auto 20px;
