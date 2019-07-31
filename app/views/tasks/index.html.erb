@@ -27,6 +27,7 @@
     <th><%= t('view.deadline') %></th>
     <th><%= t('view.status') %></th>
     <th><%= t('view.priority') %></th>
+    <th><%= t('view.label_name') %></th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
     <th>&nbsp;</th>
@@ -43,6 +44,7 @@
       <td class="sort_test_capybara"><%= task.deadline %></td>
       <td><%= task.status %></td>
       <td class="task_priority"><%= task.priority %></td>
+      <td><%= task.priority %></td>
       <td><%= link_to t('view.detail'), task_path(task.id), class: 'submit', class: 'btn' %></td>
       <td><%= link_to t('view.edit'), edit_task_path(task.id), class: 'btn' %></td>
       <td><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') }, class: 'btn' %></td>

@@ -62,7 +62,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @labels = current_user.labels.where(task_id: @task.id)
+    # @labels = current_user.labels.where(task_id: @task.id)
   end
 
   def edit
