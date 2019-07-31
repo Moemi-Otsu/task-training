@@ -44,7 +44,14 @@
       <td class="sort_test_capybara"><%= task.deadline %></td>
       <td><%= task.status %></td>
       <td class="task_priority"><%= task.priority %></td>
-      <td><%= task.priority %></td>
+      <td>
+        <ul>
+      <% labels = Task.find(task.id).labels_on_task %>
+      <% labels.each do |i| %>
+          <li class="show_labels"><%= i.label_name %></li>
+      <% end %>
+        </ul>
+      </td>
       <td><%= link_to t('view.detail'), task_path(task.id), class: 'submit', class: 'btn' %></td>
       <td><%= link_to t('view.edit'), edit_task_path(task.id), class: 'btn' %></td>
       <td><%= link_to t('view.delete'), task_path(task.id), method: :delete, data: { confirm: t('view.alert_delete') }, class: 'btn' %></td>

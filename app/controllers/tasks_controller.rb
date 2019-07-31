@@ -47,7 +47,6 @@ class TasksController < ApplicationController
     else
       @task = Task.new
     end
-    # @task.build_task
   end
 
   def create
@@ -62,7 +61,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    # @labels = current_user.labels.where(task_id: @task.id)
   end
 
   def edit

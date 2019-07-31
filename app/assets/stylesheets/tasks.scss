@@ -125,6 +125,12 @@
 
 .table td a:hover { color: #ef7a82 }
 
+.table td ul {
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
+
 /* Lower */
 
 .wrapper .wrapper-box {
@@ -228,7 +234,8 @@
   transition: all 0.2s ease;
 }
 
-.show_box .show_labels li {
+.show_box .show_labels li,
+table td ul li.show_labels {
   display: inline-block;
   padding: 3px 7px;
   margin: 0 10px 5px 0;
@@ -238,7 +245,8 @@
   font-size: 1.1rem;
 }
 
-.show_box .show_labels li:last-child {
+.show_box .show_labels li:last-child,
+table td ul li.show_labels:last-child {
   margin: 0;
 }
 
