@@ -50,9 +50,9 @@ class TasksController < ApplicationController
   end
 
   def create
-    # @task = Task.new(task_params)
-    @task = current_user.tasks.build(task_params)
+    @task = Task.new(task_params)
     @task.user_id = current_user.id
+    @labels = @task.labels_on_task
     if @task.save
       redirect_to tasks_path, notice: 'タスクを作成しました'
     else
@@ -89,7 +89,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority, label_ids: [])
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, labels_on_task_ids: [])
   end
 
   def set_task

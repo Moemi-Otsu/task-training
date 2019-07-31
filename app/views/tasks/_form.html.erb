@@ -33,7 +33,7 @@
   <!-- labelのform -->
   <div class="task_title">
     <%= form.label :'label_name', t('view.label_name') %>
-    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :label_name, include_hidden: false ) do |i|  %>
+    <%= form.collection_check_boxes(:labels_on_task_ids, Label.all, :id, :label_name, include_hidden: false ) do |i|  %>
       <%= i.label do %>
         <%= i.check_box %>
         <%= i.text %>
