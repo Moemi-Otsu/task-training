@@ -91,6 +91,18 @@
   transition: all 0.2s ease;
 }
 
+.task_search .btn_sort {
+  margin-top: 15px;
+}
+
+.task_search .btn_sort input {
+  margin-right: 5px;
+}
+
+.task_search .btn_sort label {
+  margin-right: 20px;
+}
+
 // .table { table-layout: fixed; }
 
 .table td {

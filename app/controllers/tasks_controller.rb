@@ -9,6 +9,13 @@ class TasksController < ApplicationController
     # 終了期限順にソート
     if params[:sort] == "true"
       @tasks = tasks.order("deadline DESC").page(params[:page]).per(PER)
+    # labelの検索
+    elsif params[:labels_on_task_ids].present? && params[:label_search]
+      labels = Label.where(id: params[:labels_on_task_ids]).pluck(:id)
+      label_tasks = TaskLabel.where(label_id: labels)
+      tasks_id = label_tasks.pluck(:task_id)
+      @tasks = tasks.where(id: tasks_id).page(params[:page]).per(PER)
+      # labelの検索
     elsif params[:title_search] == "" && params[:status_search] == "" && params[:priority_search] == "" && params[:btn_search]
       redirect_to tasks_path, notice: '絞り込み条件を入力してください。'
     elsif params[:title_search].present? && params[:status_search].present? && params[:priority_search].present? && params[:btn_search] 
