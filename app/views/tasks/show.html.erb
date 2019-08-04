@@ -1,6 +1,17 @@
 <div class="wrapper-box col-md-8 col-md-offset-2 col-sm-8">
   <h1><%= t('view.title_h1_show') %></h1>
   <div class="show_box">
+  <% if @task.labels_on_task.empty? %>
+  <% else %>
+    <div class="show_labels">
+      <p><%= t('view.label_name') %>：</p>
+      <ul>
+      <% @task.labels_on_task.each do |i| %>
+        <li><%= i.label_name %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
     <p><%= t('view.title') %>：<%= @task.title %></p>
     <p><%= t('view.content') %>：<%= @task.content %></p>
     <p><%= t('view.deadline') %>：<%= @task.deadline %></p>

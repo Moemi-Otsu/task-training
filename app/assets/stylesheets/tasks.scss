@@ -91,6 +91,18 @@
   transition: all 0.2s ease;
 }
 
+.task_search .btn_sort {
+  margin-top: 15px;
+}
+
+.task_search .btn_sort input {
+  margin-right: 5px;
+}
+
+.task_search .btn_sort label {
+  margin-right: 20px;
+}
+
 // .table { table-layout: fixed; }
 
 .table td {
@@ -124,6 +136,12 @@
 }
 
 .table td a:hover { color: #ef7a82 }
+
+.table td ul {
+  width: auto;
+  margin: 0;
+  padding: 0;
+}
 
 /* Lower */
 
@@ -226,6 +244,22 @@
   text-decoration: none;
   color: #ef7a82;
   transition: all 0.2s ease;
+}
+
+.show_box .show_labels li,
+table td ul li.show_labels {
+  display: inline-block;
+  padding: 3px 7px;
+  margin: 0 10px 5px 0;
+  border: 1px solid #faaca8;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 1.1rem;
+}
+
+.show_box .show_labels li:last-child,
+table td ul li.show_labels:last-child {
+  margin: 0;
 }
 
 .wrapper .btns a {

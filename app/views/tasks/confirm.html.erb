@@ -7,12 +7,18 @@
   <%= form.hidden_field :deadline %>
   <%= form.hidden_field :status %>
   <%= form.hidden_field :priority %>
+  <%= form.hidden_field :labels_on_task_ids, multiple: true %>
 
   <p><%= t('view.title') %>：<%= @task.title %></p>
   <p><%= t('view.content') %>：<%= @task.content %></p>
   <p><%= t('view.deadline') %>：<%= @task.deadline %></p>
   <p><%= t('view.status') %>：<%= @task.status %></p>
   <p><%= t('view.priority') %>：<%= @task.priority %></p>
+  <p><%= t('view.label_name') %>：
+    <% @task.labels_on_task.each do |i| %>
+      <span><%= i.label_name %></span>
+    <% end %>
+  </p>
   <%= form.submit  t('view.submit') %>
 <% end %>
 
@@ -22,6 +28,7 @@
   <%= form.hidden_field :deadline %>
   <%= form.hidden_field :status %>
   <%= form.hidden_field :priority %>
+  <%= form.hidden_field :labels_on_task_ids, multiple: true %>
   <%= form.submit t('view.back'), name: 'back' %>
 <% end %>
 </div>

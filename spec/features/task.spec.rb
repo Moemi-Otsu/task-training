@@ -64,10 +64,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "一覧ページから詳細ページへの遷移" do
     user_login_factory
-    # background do の内容が先に実行される
     visit tasks_path
-    # save_and_open_page
-    # click_link '詳細'
     all('tr')[1].click_link('詳細')
   end
 
@@ -99,7 +96,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     user_login_factory
     visit tasks_path
     fill_in 'title_search', with: 'タイトルa'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('.task_title')
     expect(task[0]).to have_content('タイトルaタイトルa')
   end
@@ -108,7 +105,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     user_login_factory
     visit tasks_path
     select '未着手', from: 'status_search'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('tr')
     expect(task[1]).to have_content('未着手')
   end
@@ -117,7 +114,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     user_login_factory
     visit tasks_path
     select '低', from: 'priority_search'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('tr')
     expect(task[1]).to have_content('低')
   end
@@ -128,7 +125,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'title_search', with: 'タイトルa'
     select '未着手', from: 'status_search'
     select '高', from: 'priority_search'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('tr')
     expect(task[1]).to have_content('未着手')
     expect(task[1]).to have_content('タイトルa')
@@ -140,7 +137,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     fill_in 'title_search', with: 'タイトルa'
     select '未着手', from: 'status_search'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('tr')
     expect(task[1]).to have_content('未着手')
     expect(task[1]).to have_content('タイトルa')
@@ -151,7 +148,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     fill_in 'title_search', with: 'タイトルa'
     select '高', from: 'priority_search'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('tr')
     expect(task[1]).to have_content('高')
     expect(task[1]).to have_content('タイトルa')
@@ -162,7 +159,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     select '未着手', from: 'status_search'
     select '高', from: 'priority_search'
-    click_on '絞り込み検索'
+    click_on('btn_search')
     task = all('tr')
     expect(task[1]).to have_content('高')
     expect(task[1]).to have_content('未着手')

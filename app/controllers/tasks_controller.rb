@@ -9,6 +9,13 @@ class TasksController < ApplicationController
     # 終了期限順にソート
     if params[:sort] == "true"
       @tasks = tasks.order("deadline DESC").page(params[:page]).per(PER)
+    # labelの検索
+    elsif params[:labels_on_task_ids].present? && params[:label_search]
+      labels = Label.where(id: params[:labels_on_task_ids]).pluck(:id)
+      label_tasks = TaskLabel.where(label_id: labels)
+      tasks_id = label_tasks.pluck(:task_id)
+      @tasks = tasks.where(id: tasks_id).page(params[:page]).per(PER)
+      # labelの検索
     elsif params[:title_search] == "" && params[:status_search] == "" && params[:priority_search] == "" && params[:btn_search]
       redirect_to tasks_path, notice: '絞り込み条件を入力してください。'
     elsif params[:title_search].present? && params[:status_search].present? && params[:priority_search].present? && params[:btn_search] 
@@ -52,6 +59,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     @task.user_id = current_user.id
+    @labels = @task.labels_on_task
     if @task.save
       redirect_to tasks_path, notice: 'タスクを作成しました'
     else
@@ -66,6 +74,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    @labels = Label.all
     if @task.update(task_params)
       redirect_to tasks_path, notice: "タスクを更新しました"
     else
@@ -87,7 +96,7 @@ class TasksController < ApplicationController
   private
   
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, labels_on_task_ids: [])
   end
 
   def set_task
@@ -100,11 +109,5 @@ class TasksController < ApplicationController
       redirect_to tasks_path, notice: '絞り込み条件にマッチするタスクはありません。'
     end
   end
-
-  # def user_not_loggedin
-  #   unless @task.user_id == current_user.id
-  #     redirect_to new_session_path
-  #   end
-  # end
 
 end

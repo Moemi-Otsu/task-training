@@ -32,6 +32,7 @@
         <% if @current_user.admin.present? %>
           <!-- adminの場合 -->
           <li><%= link_to '管理者メニュー', admin_users_path %></li>
+          <li><%= link_to 'ラベル作成', new_label_path %></li>
         <% end %>
         </ul>
       </header>

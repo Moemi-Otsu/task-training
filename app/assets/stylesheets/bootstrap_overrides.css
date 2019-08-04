@@ -7,3 +7,11 @@ ul.pagination li a { color: #474747; }
   background: rgba(255,255,255,0.4);
   border: 1px solid #ddd;
 }
+
+.table>tbody>tr>th,
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th  {
+  vertical-align: middle;
+}
